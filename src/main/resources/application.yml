@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/company
+    driver-class-name: com.mysql.jdbc.Driver
+    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+mybatis:
+  #全局配置文件
+  config-location: classpath:mybatis/mybatis-config.xml
+  #mapper配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml
+#设置mapper包的日志等级 debug
+logging:
+  level:
+    cn.liyang.springredis.mapper: debug
