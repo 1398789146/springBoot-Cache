@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyang.springredis.mapper.TeacherMapper">
+    <resultMap id="teacherMaps" type="cn.liyang.springredis.pojo.Teacher">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="class_name" property="className"/>
+        <collection property="students" column="id" select="getStudents"></collection>
+    </resultMap>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="teacherMaps">
+        select * from company.teacher where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="teacherMaps">
+        select * from company.teacher
+    </select>
+
+    <select id="getStudents" parameterType="java.lang.Long" resultType="cn.liyang.springredis.pojo.Student">
+        select * from company.student where teacher_id = #{id}
+    </select>
+<!--    <resultMap type="cn.liyang.springredis.pojo.Teacher" id="teacherMaps">-->
+<!--        <id column="id" property="id"/>-->
+<!--        <result column="name" property="name"/>-->
+<!--        <result column="class_name" property="className"/>-->
+<!--        <collection property="students" ofType="Student" select="getStudents" column="id">-->
+<!--            &lt;!&ndash; column="id"这个id要传给getStudents的查询语句作为where的参数 &ndash;&gt;-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+<!--    &lt;!&ndash; 查询所有的老师以及每个老师所拥有的学生 resultMap="teacherMaps"这是这个查询语句的返回值类型 &ndash;&gt;-->
+<!--    <select id="findAll" parameterType="cn.liyang.springredis.pojo.Teacher" resultMap="teacherMaps">-->
+<!--		SELECT-->
+<!--			t.id,-->
+<!--			t.NAME,-->
+<!--			t.class_name-->
+<!--		FROM-->
+<!--			teacher t-->
+<!--	</select>-->
+<!--    &lt;!&ndash;查询一个老师&ndash;&gt;-->
+<!--    <select id="findById" parameterType="Long" resultMap="teacherMaps">-->
+<!--		SELECT-->
+<!--			t.id,-->
+<!--			t.NAME,-->
+<!--			t.class_name-->
+<!--		FROM-->
+<!--			teacher t-->
+<!--		where-->
+<!--		    t.id = #{id}-->
+<!--	</select>-->
+<!--    &lt;!&ndash;老师中有个属性students的list集合 这个集合需要用这个语句查询 入参是老师的id&ndash;&gt;-->
+<!--    <select id="getStudents" parameterType="int" resultType="cn.liyang.springredis.pojo.Student">-->
+<!--        select-->
+<!--        s.id,-->
+<!--        s. NAME,-->
+<!--        s.class_name as className-->
+<!--        from student s-->
+<!--        &lt;!&ndash; #{id}他的取值是 <collection property="students" ofType="Student" select="getStudents" column="id">中的column="id"&ndash;&gt;-->
+<!--        where teacher_id = #{id}-->
+<!--    </select>-->
+</mapper>

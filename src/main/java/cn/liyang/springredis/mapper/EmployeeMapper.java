@@ -16,18 +16,22 @@ import java.util.List;
 @Repository
 public interface EmployeeMapper {
 
+    List<Employee> query (Employee employee);
+
+    List<Employee> findByIds (List list);
+
     @Select("select * from employee where id=#{id}")
     Employee findById (Long id);
 
-    @Select("select * from employee ")
-    List<Employee> findAll();
 
-    @Update( "update employee set  yuangongname=#{yuangongname},word=#{word},lineManagerId=#{lineManagerId}," +
-            "entryTime=#{entryTime},wage=#{wage},bonus=#{bonus},word=#{bumenTableId},word=#{bumenTableId} where id=#{id}  " )
+    @Select("select * from employee ")
+    List<Employee> findAll ();
+
+
     int update (Employee employee);
 
-    @Delete( "delete from employee where id = #{id}" )
+    @Delete("delete from employee where id = #{id}")
     int delete (Long id);
 
-
+    List<Employee> findByIdXml (Employee employee);
 }

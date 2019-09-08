@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyang.springredis.mapper.OrderMapper">
+    <resultMap id="orderMap" type="cn.liyang.springredis.pojo.Order">
+        <id property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="goods" column="goods"/>
+        <result property="userId" column="user_id"/>
+        <!--告诉这个resultMap 表中不存在的属性user
+            这个属性怎么查 :    association                联合其他表去查
+            去哪里查       :    select="getUserById"        具体调用那个查询语句
+            查的依据       :    column="user_id"            查询的参数是用户的id
+        -->
+        <association property="user" column="user_id" select="getUserById" ></association>
+    </resultMap>
+    <select id="findById" resultMap="orderMap" parameterType="java.lang.Long">
+        select * from company.order where id = #{id}
+    </select>
+    <select id="getUserById" parameterType="java.lang.Long" resultType="cn.liyang.springredis.pojo.User">
+        select * from company.user where id = #{id}
+    </select>
+</mapper>
