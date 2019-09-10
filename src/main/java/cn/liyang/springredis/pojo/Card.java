@@ -1,7 +1,9 @@
 package cn.liyang.springredis.pojo;
 
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
 
   private long id;
   private long cardId;

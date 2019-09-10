@@ -1,6 +1,8 @@
 package cn.liyang.springredis.pojo;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
 
   private long id;
   private long orderNo;

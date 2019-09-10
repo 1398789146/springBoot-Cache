@@ -1,7 +1,9 @@
 package cn.liyang.springredis.pojo;
 
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 
   private long id;
   private String name;

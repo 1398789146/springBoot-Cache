@@ -1,9 +1,10 @@
 package cn.liyang.springredis.pojo;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Teacher {
+public class Teacher implements Serializable {
 
   private long id;
   private String name;

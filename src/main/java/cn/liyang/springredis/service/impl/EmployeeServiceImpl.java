@@ -39,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      *  1. 自动配置类;CacheAutoConfiguration
      *  2. 缓存的配置类有9个
      *  3. 默认生效配置类:SimpleCacheConfiguration
+     *          当配置了:spring-boot-starter-data-redis后生效配置类是RedisCacheConfiguration
      *  4. 给容器注册一个缓存管理器CacheManager: ConcurrentMapCacheManager;
      *  5. 可以获取和创建ConcurrentMapCache类型的缓存组件;该组件的作用将数据保存在ConcurrentMap容器中;
      *        1. 能根据缓存对象的名字获得缓存对象,这个键值对,存放在ConcurrentMap集合中
@@ -102,6 +103,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public int delete (Long id) {
         System.out.println("删除id="+id+"的员工");
         //int affectRows = employeeMapper.delete( id );
-        return 1/0;
+        return 1;
     }
 }
